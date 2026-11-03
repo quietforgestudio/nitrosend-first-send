@@ -1,0 +1,16 @@
+ok    store: 79688 MiB free on its disk, against a reserve of 1024 MiB
+ok    store: the running engine holds it, and checked it as it started
+ok    keys: ./keys holds key 1, its owner's alone
+fail  submission: its certificate for localhost is not one clients accept (UnknownIssuer): use one from a certificate authority, valid for the name clients reach it by
+fail  SES API: its certificate is not one clients accept (UnknownIssuer): use one from a certificate authority, valid for the name clients reach it by
+ok    clock: -0.000 s from time.cloudflare.com:123
+warn  resolver: DANE is off ([delivery] dane = false), so a route's TLSA records are not honoured and DNSSEC is not checked
+warn  egresses: none, so mail goes out from the host's own address, whose reverse DNS and blocklisting doctor cannot see; put one with its address and HELO name
+ok    port 25: port 25 reaches mta-proof.nitrosend.com:2525
+fail  identity example.test: s1._domainkey.example.test publishes no DKIM key: publish s1._domainkey.example.test TXT "v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtad+ZRlFMQScyhZe5deOCSW4pFdnbuYrdLujacmb4x5D8UbR2pdax3bHghyZPFAOCAJXKZAe96+Ep9CvCxsPvIqdJWKUWdwHi1C54labydnq/xbHyzEjo0PD7N9xEEo/Yyt7TbpE/0bJZr4PLtTkzFqe1umtr6JrSv2ed9kmoFslYkIkeWdzjGOAOCiLCqz4zDSJBByZJtNnMz4l8YGRlALZyJrC9L8ciJlNpNZj7AM6Q0rZqMPOTJGvEGLMVyc/JQiTqlkwYMpRtBZPSHcqdk3l/s7UPWpX024Zoznocp1PICCTv5wJ8P9tEil25Tjmkvn3WaPLnjH+YpVLegBuYwIDAQAB"
+fail  identity example.test: no DMARC record governs it: publish _dmarc.example.test TXT "v=DMARC1; p=none", then tighten it once reports look right
+warn  identity example.test: the return path's domain, bounces.localhost, is not example.test or under it, so SPF does not align for DMARC, and DMARC passes on DKIM alone
+fail  bounces: bounces.localhost has no MX, so bounces to its return paths go nowhere: publish one naming the host the engine's feedback listener answers on
+
+5 failed, 3 to look at, 5 passed
+nitromta: doctor found what to change, above

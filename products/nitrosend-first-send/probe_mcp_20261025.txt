@@ -1,0 +1,17 @@
+== runtime ==
+python3 -V: Python 3.12.3
+node -v  : v24.14.0
+uname -r : 6.8.0-139-generic
+uname -m : x86_64
+codex --version: codex-cli 0.163.0
+
+== initialize http=200 ==
+serverInfo: {"name": "nitro", "title": "Nitrosend", "version": "1.7.0"}
+protocolVersion: 2025-06-18
+
+== tools/list http=200 : 25 tools ==
+nitro_compose_campaign, nitro_compose_flow, nitro_configure_account, nitro_configure_providers, nitro_control_delivery, nitro_define_segment, nitro_get_insights, nitro_get_status, nitro_import_contacts, nitro_ingest, nitro_manage_audience, nitro_manage_billing, nitro_manage_domains, nitro_manage_template, nitro_query, nitro_request_support, nitro_review_delivery, nitro_search_contacts, nitro_search_docs, nitro_select_account, nitro_select_brand, nitro_send_message, nitro_send_test_message, nitro_set_brand_kit, nitro_set_memory
+
+== the two tools the MCP field note's run used, raw annotations ==
+nitro_get_status {"destructiveHint": false, "idempotentHint": true, "openWorldHint": false, "readOnlyHint": true, "title": "Get account status"}
+nitro_send_message {"destructiveHint": true, "idempotentHint": true, "openWorldHint": true, "readOnlyHint": false, "title": "Send transactional email or SMS"}
