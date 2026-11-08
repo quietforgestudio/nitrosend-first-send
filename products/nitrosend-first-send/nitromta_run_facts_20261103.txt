@@ -1,0 +1,51 @@
+# NitroMTA 0.1.6 run facts, 2026-11-03. Every line below is this script's own output.
+# Paths are relative to the run directory; the archive and the extracted tree are one level up.
+
+$ uname -srvm ; nproc
+Linux 6.8.0-139-generic #139-Ubuntu SMP PREEMPT_DYNAMIC Sat Aug  1 03:52:05 UTC 2026 x86_64
+8
+
+$ stat -c '%y  %s  %n' ../nitromta-0.1.6-x86_64-linux.tar.gz ../nitromta-0.1.6-x86_64-linux/nitromta config.toml  # TZ=UTC
+2026-11-03 10:03:49.581994938 +0000  10147175  ../nitromta-0.1.6-x86_64-linux.tar.gz
+2026-11-03 03:50:16.000000000 +0000  29733736  ../nitromta-0.1.6-x86_64-linux/nitromta
+2026-11-03 10:04:43.451009669 +0000  2728  config.toml
+
+$ sha256sum ../nitromta-0.1.6-x86_64-linux.tar.gz
+fe77b3099badd749d185e211c7978654e26da077b69b9eba6fea72aa4b976966  ../nitromta-0.1.6-x86_64-linux.tar.gz
+
+$ ls -1 ../nitromta-0.1.6-x86_64-linux/ ; file ../nitromta-0.1.6-x86_64-linux/nitromta
+LICENSE
+nitromta
+nitromta.service
+nitromta.sysusers
+NOTICE
+README.md
+../nitromta-0.1.6-x86_64-linux/nitromta: ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 3.2.0, BuildID[sha1]=ddece7c20393cad1faa6c54f46bf4297975db426, not stripped
+
+$ openssl x509 -in tls.crt -noout -subject -ext subjectAltName
+subject=CN = rcgen self signed cert
+X509v3 Subject Alternative Name: 
+    IP Address:127.0.0.1, IP Address:0:0:0:0:0:0:0:1, DNS:localhost
+
+$ grep -n '^hostname' config.toml   # the [submission] hostname setup --capture wrote
+21:hostname = "localhost"
+
+$ for p in /health/live /health/accept /health/dispatch /metrics /health ; do curl -s -o /dev/null -w ... ; done
+/health/live       200
+/health/accept     200
+/health/dispatch   200
+/metrics           200
+/health            404
+
+$ python3  # one TCP connect per host:port, 8 s timeout, read the greeting
+mta-proof.nitrosend.com:2525 -> 220 mta-proof.nitrosend.com Python SMTP 1.4.6
+mta-proof.nitrosend.com:25 -> TimeoutError: timed out
+gmail-smtp-in.l.google.com:25 -> 220 mx.google.com ESMTP d2e1a72fcca58-8aadcbc904asi19980790b3a.230 - gsmtp
+gmail-smtp-in.l.google.com:2525 -> TimeoutError: timed out
+
+$ python3  # STARTTLS to the submission listener with check_hostname True and False
+check_hostname=True: STARTTLS completed
+check_hostname=False: STARTTLS completed
+
+$ nitromta list --config config.toml logins   # revoked after the send
+no logins

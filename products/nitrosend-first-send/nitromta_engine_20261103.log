@@ -1,0 +1,7 @@
+# nitromta 0.1.6. The engine that delivered the message in report_nitromta.md, started after the
+# [operator] listen hand-edit. Verbatim stdout+stderr of: $ nitromta run --config config.toml
+{"timestamp":"2026-11-03T10:04:43.462083Z","level":"INFO","message":"the store was not closed at the last stop; its check found nothing wrong","ms":"0"}
+{"timestamp":"2026-11-03T10:04:43.465108Z","level":"INFO","message":"serving admin","socket":"./admin.sock"}
+{"timestamp":"2026-11-03T10:04:43.469989Z","level":"INFO","message":"accepting submission","listen":"127.0.0.1:2587"}
+{"timestamp":"2026-11-03T10:04:43.470059Z","level":"INFO","message":"serving the SES v2 API","listen":"127.0.0.1:4443"}
+{"timestamp":"2026-11-03T10:04:43.470073Z","level":"INFO","message":"serving health and metrics","listen":"127.0.0.1:9099"}

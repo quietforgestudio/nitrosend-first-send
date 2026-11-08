@@ -1,0 +1,10 @@
+# nitromta 0.1.6, x86_64-linux. 127.0.0.1:9090 held by another process on this host.
+# submission moved to 127.0.0.1:12587 and the SES API to 127.0.0.1:14443 so [operator] listen is the ONLY conflict.
+$ nitromta run --config config.toml
+{"timestamp":"2026-11-03T10:15:43.983160Z","level":"INFO","message":"the store was not closed at the last stop; its check found nothing wrong","ms":"0"}
+{"timestamp":"2026-11-03T10:15:43.986200Z","level":"INFO","message":"serving admin","socket":"./admin.sock"}
+{"timestamp":"2026-11-03T10:15:43.986762Z","level":"WARN","message":"capture mode: every delivery is captured, and none is sent","directory":"./capture"}
+{"timestamp":"2026-11-03T10:15:43.989593Z","level":"INFO","message":"accepting submission","listen":"127.0.0.1:12587"}
+{"timestamp":"2026-11-03T10:15:43.989654Z","level":"INFO","message":"serving the SES v2 API","listen":"127.0.0.1:14443"}
+{"timestamp":"2026-11-03T10:15:43.989963Z","level":"ERROR","message":"stopped","error":"127.0.0.1:9090: Address already in use (os error 98)"}
+# exit status: 1
